@@ -1,0 +1,24 @@
+<?php
+    $contador        = 0;
+    $tiempoInicio    = microtime(TRUE);
+    $urlArchivo      = 'seed.txt';
+    $puntero         = fopen($urlArchivo, 'r');
+    while(!feof($puntero)):
+        $linea        = fgets($puntero);
+        $rango        = explode(' ', $linea);
+        $rango[0]    = (int) $rango[0];
+        $rango[1]    = (int) $rango[1];
+        for($i = $rango[0]; $i <= $rango[1]; $i++){
+                  if ($i == strrev($i)) 
+                $contador++;    
+        }
+    endwhile;
+    $tiempoFin        = microtime(TRUE);
+    $tiempoTotal        = $tiempoFin - $tiempoInicio;
+    echo "<pre>
+    Encontradas    : {$contador}
+    Inicio         : {$tiempoInicio}
+    Fin            : {$tiempoFin}
+    Tiempo Total   : {$tiempoTotal}
+    </pre>";
+?>
